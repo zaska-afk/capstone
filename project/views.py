@@ -72,15 +72,15 @@ def addpost_view(request):
     if request.method == "POST":
         form = AddPostForm(request.POST)
         if form.is_valid():
-            # form.save()
+            form.save()
             data = form.cleaned_data
             add_post = Post.objects.create(
-                post_content=data["post_text"],
-                post_author=request.user
+                post_content=data["post_name", "post_text"],
+                post_creator=request.user
             )
-            if "@" in data["post_text"]:
-                find_user = re.findall(r"@(\w+)", data["post_content"])
-                grap_user = find_user[0]
+            # if "@" in data["post_text"]:
+            #     find_user = re.findall(r"@(\w+)", data["post_content"])
+            #     grap_user = find_user[0]
                 # user = post_on_comm.objects.get(username=grap_user)
                 # Notification.objects.create(post_creator=user, add_post=add_post)
             return redirect('/')
