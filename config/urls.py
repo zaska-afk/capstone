@@ -25,7 +25,7 @@ urlpatterns = [
     path("signup/", views.signup_view, name="signup"),
     path("addcommunity/", views.addcommunity_view, name="addcommunity"),
     path("addcomment/", views.addcomment_view, name="addcomment"),
-    path("addpost/", views.addcomment_view, name="addcomment"),
+    path("addpost/", views.addpost_view, name="addpost"),
     
     # path("posts/<int:id>/", views.post_detail, name="post"),
     # path("community/<int:id>/", views.community_detail, name="community"),

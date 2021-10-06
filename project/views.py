@@ -1,12 +1,13 @@
-from django.shortcuts import render,HttpResponse, HttpResponseRedirect, reverse
+from django.shortcuts import render,HttpResponse, HttpResponseRedirect, reverse, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.forms.models import model_to_dict
 
 from project.forms import AddCommunityForm, AddPostForm, EditCommentForm, LoginForm, SignUpForm
 from project.models import Comment, Profile, Community, Post, Vote
+import re
 # Create your views here.
-
+# Dunya added redirect and re to imports
 def index(request):
     template_name = 'index.html'
     posts = Post.objects.all()
@@ -65,12 +66,35 @@ def edit(request, id):
 
 def home_view(request):
     ...
-
+# By Dunya-trying create an add_post with @ user ability
+# structure somewhat taken from twitterclone(Not sure about lines 84 and 85)
 def addpost_view(request):
-    ...
+    if request.method == "POST":
+        form = AddPostForm(request.POST)
+        if form.is_valid():
+            # form.save()
+            data = form.cleaned_data
+            add_post = Post.objects.create(
+                post_content=data["post_text"],
+                post_author=request.user
+            )
+            if "@" in data["post_text"]:
+                find_user = re.findall(r"@(\w+)", data["post_content"])
+                grap_user = find_user[0]
+                # user = post_on_comm.objects.get(username=grap_user)
+                # Notification.objects.create(post_creator=user, add_post=add_post)
+            return redirect('/')
 
+    form = AddPostForm()
+    return render(request, "index.html", {"form": form})
+
+# took structure some what from recipebox
+# not sure about the structure
 def addcomment_view(request):
-    ...
+    template_name = "index.html"
+    comment = Post.objects.get(id=id) # Not sure about use of id
+    context = {"comment": comment}
+    return render(request, template_name, context)
 
 def addcommunity_view(request):
     ...

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # first models 
 class Profile(models.Model):
     display_name = models.CharField(max_length=50)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    site_user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.CharField(max_length=200, blank=True)
     credit = models.IntegerField(default=0)
     created_on = models.DateField(auto_now_add=True)
@@ -20,7 +20,7 @@ class Community(models.Model):
     comm_creator = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     created_on = models.DateField(auto_now_add=True)
     comm_url = models.URLField(max_length=200, blank=True)
-    comm_members = models.ManyToManyField(Profile, blank=True)
+    # comm_members = models.ManyToManyField(Profile, blank=True)
 
     def __str__(self):
         return self.comm_name
