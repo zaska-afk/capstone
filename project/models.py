@@ -2,16 +2,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Profile(models.Model):
-    display_name = models.CharField(max_length=50)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    bio = models.CharField(max_length=200, blank=True)
-    credit = models.IntegerField(default=0)
-    created_on = models.DateField(auto_now_add=True)
+from auth.models import Profile
 
-    def __str__(self):
-        return self.display_name
-        # return str(self.display_name)
 
 class Community(models.Model):
     comm_name = models.TextField(max_length=200)
@@ -19,7 +11,7 @@ class Community(models.Model):
     comm_creator = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     created_on = models.DateField(auto_now_add=True)
     comm_url = models.URLField(max_length=200, blank=True)
-    comm_members = models.ManyToManyField(Profile, blank=True)
+    # comm_members = models.ManyToManyField(Profile, blank=True)
 
     def __str__(self):
         return self.comm_name

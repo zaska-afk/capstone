@@ -3,11 +3,13 @@
 <a href="/addpost/">Add Post</a>
 <a href="/addcommunity/">Add Community</a>
 
-<a href="/login/">Login</a>
-<a href="/logout/">Logout</a>
+<button><a href="/login/">Login</a></button>
+<button><a href="/logout/">Logout</a></button>
+
 <ul>
   {% for post in posts %}
   <li><a href="/posts/{{post.post_name}}/">{{post.post_name}}</a></li>
-  {% comment %} <li><a href="/recipes/{{recipe.id}}/">{{recipe.title}}</a></li> {% endcomment %}
-  {% endfor %}
+  {% comment %}
+  <li><a href="/recipes/{{recipe.id}}/">{{recipe.title}}</a></li>
+  {% endcomment %} {% endfor %}
 </ul>
