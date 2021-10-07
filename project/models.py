@@ -2,7 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from auth.models import Profile
+from authentication.models import Profile
 
 
 class Community(models.Model):

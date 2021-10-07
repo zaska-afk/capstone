@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'project',
-    'auth',
+    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -127,4 +127,4 @@ LOGIN_URL = "/login/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'auth.Profile'
+AUTH_USER_MODEL = 'authentication.Profile'

@@ -1,8 +1,8 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, reverse
 from django.contrib.auth import authenticate, login, logout
 
-from auth.forms import LoginForm, SignUpForm
-from auth.models import Profile
+from authentication.forms import LoginForm, SignUpForm
+from authentication.models import Profile
 
 
 def signup_view(request):
