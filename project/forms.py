@@ -19,11 +19,12 @@ class LoginForm(forms.Form):
     username = forms.CharField(label="Enter a Valid Username")
     password = forms.CharField(label="Enter a Valid Password", widget=forms.PasswordInput())
     
-
+# Dunya - commented out 'post_on_comm' to render post form
 class AddPostForm(ModelForm):
     class Meta:
         model = Post
-        fields = ['post_name', 'post_text', 'post_on_comm']
+        # fields = ['post_name', 'post_text', 'post_on_comm']
+        fields = ['post_name', 'post_text',"post_on_comm"]
 
 
 class AddCommunityForm(ModelForm):

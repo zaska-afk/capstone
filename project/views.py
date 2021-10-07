@@ -67,15 +67,16 @@ def edit(request, id):
 def home_view(request):
     ...
 # By Dunya-trying create an add_post with @ user ability
-# structure somewhat taken from twitterclone(Not sure about lines 84 and 85)
+# Dunya - structure somewhat taken from twitterclone(Not sure about lines 84 and 85)
 def addpost_view(request):
     if request.method == "POST":
         form = AddPostForm(request.POST)
         if form.is_valid():
-            form.save()
+            # form.save()
             data = form.cleaned_data
             add_post = Post.objects.create(
-                post_content=data["post_name", "post_text"],
+                post_content=data["post_name", "post_text", "post_on_comm"],
+                # post_content=data["post_name", "post_text"],
                 post_creator=request.user
             )
             # if "@" in data["post_text"]:
@@ -86,15 +87,18 @@ def addpost_view(request):
             return redirect('/')
 
     form = AddPostForm()
-    return render(request, "index.html", {"form": form})
+    return render(request, "generic_form.html", {"form": form})
 
-# took structure some what from recipebox
-# not sure about the structure
+# Dunya - took structure some what from recipebox
+# Dunya - not sure about the structure
+# Dunya - Changed view a bit to help render. commented out olde to have a reference
 def addcomment_view(request):
-    template_name = "index.html"
-    comment = Post.objects.get(id=id) # Not sure about use of id
-    context = {"comment": comment}
-    return render(request, template_name, context)
+    template_name = "generic_form.html"
+    # comment = Post.objects.get(id=id) # Dunya - Not sure about use of id
+    comment = Post.objects.create("on_post, comment_text")
+    # context = {"comment": comment}
+    # return render(request, template_name, context)
+    return render(request, template_name)
 
 def addcommunity_view(request):
     ...
