@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.forms.models import model_to_dict
 
-from project.forms import AddCommunityForm, AddPostForm, EditCommentForm, LoginForm, SignUpForm
+from project.forms import AddCommunityForm, AddPostForm, EditCommentForm, LoginForm, SignUpForm, AddCommentForm
 from project.models import Comment, Profile, Community, Post, Vote
 import re
 # Create your views here.
@@ -96,12 +96,35 @@ def addpost_view(request):
 # Dunya - not sure about the structure
 # Dunya - Changed view a bit to help render. commented out olde to have a reference
 def addcomment_view(request):
-    template_name = "generic_form.html"
+    if request.method == "POST":
+        form = AddCommentForm(request.POST)
+        if form.is_valid():
+    
     # comment = Post.objects.get(id=id) # Dunya - Not sure about use of id
-    comment = Post.objects.create("on_post, comment_text")
+            data = form.cleaned_data
+            comment = Comment.objects.create(
+            on_post = data.get("on_post"),
+            comment_text = data.get("comment_text"),
+            )
+    # template_name = "comment.html"
     # context = {"comment": comment}
-    # return render(request, template_name, context)
-    return render(request, template_name)
+    # return render(request, template_name, context) 
+    # return render(request, template_name)
+        return redirect('/')
+    else:
+        form = AddCommentForm()
+    return render(request, "comment.html", {"form": form})
+
+# Dunya- for my reference
+# def edit_ticket(request, ticket_id):
+#     ticket = Ticket.objects.get(id=ticket_id)
+#     if request.method == 'POST':
+#         form = AddBugForm(request.POST, instance=ticket)
+#         form.save()
+#         return HttpResponseRedirect(reverse("home"))
+#     form = AddBugForm(instance=ticket)
+#     return render(request, "tickets.html", context={"form": form})
+
 
 def addcommunity_view(request):
     ...

@@ -6,8 +6,6 @@
 <a href="/login/">Login</a>
 <a href="/logout/">Logout</a>
 
-<!-- {{posts.post_name}} {{posts.post_text}} {{posts.post_on_comm}} -->
-
 <ul>
   {% for post in posts %}
   <li><a href="/posts/{{post.post_name}}/">{{post.post_name}}</a></li>
@@ -16,7 +14,10 @@
 
   <li><a href="/posts/{{post.post_on_comm}}/">{{post.post_on_comm}}</a></li>
   <br />
+  <a href="/addcomment/"><button>Comment</button></a>
+  <hr />
   {% comment %}
+
   <li><a href="/recipes/{{recipe.id}}/">{{recipe.title}}</a></li>
   {% endcomment %} {% endfor %}
 </ul>
