@@ -16,16 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from project import views
+from project.views import index, addcomment_view, addcommunity_view, addpost_view
+from authuser.views import login_view, logout_view, signup_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", views.index, name="homepage"),
-    path("login/", views.login_view, name="login"),
-    path("logout/", views.logout_view, name="logout"),
-    path("signup/", views.signup_view, name="signup"),
-    path("addcommunity/", views.addcommunity_view, name="addcommunity"),
-    path("addcomment/", views.addcomment_view, name="addcomment"),
-    path("addpost/", views.addpost_view, name="addpost"),
+    path("", index, name="homepage"),
+    path("login/", login_view, name="login"),
+    path("logout/", logout_view, name="logout"),
+    path("signup/", signup_view, name="signup"),
+    path("addcommunity/", addcommunity_view, name="addcommunity"),
+    path("addcomment/", addcomment_view, name="addcomment"),
+    path("addpost/", addpost_view, name="addpost"),
     path('upvote/<int:post_id>/', views.upvote_view , name="like"),
     path('downvote/<int:post_id>/', views.downvote_view, name="dislike"),
     
