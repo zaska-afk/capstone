@@ -15,6 +15,11 @@
   <li><a href="/posts/{{post.post_on_comm}}/">{{post.post_on_comm}}</a></li>
   <br />
   <a href="/addcomment/"><button>Comment</button></a>
+  <br>
+  <li>Credit: {{ post.vote_total }}</li>
+  <br>
+  <button><a href='/upvote/{{post.id}}/'>Give&#128077;</a></button>
+  <button><a href='/downvote/{{post.id}}/'>Take&#128078;</a></button>
   <hr />
   {% comment %}
 

@@ -33,6 +33,12 @@ class Post(models.Model):
     created_on = models.DateField(auto_now_add=True)
     post_on_comm = models.ForeignKey(Community, on_delete=models.CASCADE)
 
+    # from ghostpost
+    upvote = models.IntegerField(default=0)
+    downvote = models.IntegerField(default=0)
+    def vote_total(self):
+        return self.upvote - self.downvote
+
     def __str__(self):
         return self.post_name
         # return str(self.post_name)

@@ -131,3 +131,16 @@ def addcommunity_view(request):
 
 def profilepage_view(request):
     ...
+
+def upvote_view(request, post_id):
+    post = Post.objects.get(id=post_id)
+    post.upvote += 1
+    post.save()
+    return HttpResponseRedirect('/')
+
+
+def downvote_view(request, post_id):
+    post = Post.objects.get(id=post_id)
+    post.downvote += 1
+    post.save()
+    return HttpResponseRedirect('/')

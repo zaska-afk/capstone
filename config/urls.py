@@ -26,6 +26,8 @@ urlpatterns = [
     path("addcommunity/", views.addcommunity_view, name="addcommunity"),
     path("addcomment/", views.addcomment_view, name="addcomment"),
     path("addpost/", views.addpost_view, name="addpost"),
+    path('upvote/<int:post_id>/', views.upvote_view , name="like"),
+    path('downvote/<int:post_id>/', views.downvote_view, name="dislike"),
     
     # path("posts/<int:id>/", views.post_detail, name="post"),
     # path("community/<int:id>/", views.community_detail, name="community"),
