@@ -15,7 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from project import views
+from project.views import index, addcomment_view, addcommunity_view, addpost_view
+from authuser.views import login_view, logout_view, signup_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", index, name="homepage"),
+    path("login/", login_view, name="login"),
+    path("logout/", logout_view, name="logout"),
+    path("signup/", signup_view, name="signup"),
+    path("addcommunity/", addcommunity_view, name="addcommunity"),
+    path("addcomment/", addcomment_view, name="addcomment"),
+    path("addpost/", addpost_view, name="addpost"),
+    path('upvote/<int:post_id>/', views.upvote_view , name="like"),
+    path('downvote/<int:post_id>/', views.downvote_view, name="dislike"),
+    
+    # path("posts/<int:id>/", views.post_detail, name="post"),
+    # path("community/<int:id>/", views.community_detail, name="community"),
 ]

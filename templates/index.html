@@ -1,0 +1,28 @@
+<h1>Capstone</h1>
+
+<a href="/addpost/">Add Post</a>
+<a href="/addcommunity/">Add Community</a>
+
+<a href="/login/">Login</a>
+<a href="/logout/">Logout</a>
+
+<ul>
+  {% for post in posts %}
+  <li><a href="/posts/{{post.post_name}}/">{{post.post_name}}</a></li>
+
+  <li><a href="/posts/{{post.post_text}}/">{{post.post_text}}</a></li>
+
+  <li><a href="/posts/{{post.post_on_comm}}/">{{post.post_on_comm}}</a></li>
+  <br />
+  <a href="/addcomment/"><button>Comment</button></a>
+  <br>
+  <li>Credit: {{ post.vote_total }}</li>
+  <br>
+  <button><a href='/upvote/{{post.id}}/'>Give&#128077;</a></button>
+  <button><a href='/downvote/{{post.id}}/'>Take&#128078;</a></button>
+  <hr />
+  {% comment %}
+
+  <li><a href="/recipes/{{recipe.id}}/">{{recipe.title}}</a></li>
+  {% endcomment %} {% endfor %}
+</ul>
