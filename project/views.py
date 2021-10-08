@@ -125,9 +125,30 @@ def addcomment_view(request):
 #     form = AddBugForm(instance=ticket)
 #     return render(request, "tickets.html", context={"form": form})
 
-
+# Dunya notes for addcommunity- fields = ['comm_name', 'comm_about', 'comm_url']
 def addcommunity_view(request):
-    ...
+    if request.method == "POST":
+        form = AddCommunityForm(request.POST)
+        if form.is_valid():
+            # form.save()
+            data = form.cleaned_data
+            author = Community.objects.create(
+                # post_content=data["post_name", "post_text", "post_on_comm"],
+                # post_content=data["post_name", "post_text"],
+                comm_name = data.get("comm_name"),
+                comm_about = data.get("comm_about"),
+                comm_url = data.get("comm_url"),
+                # post_creator=request.user
+            )
+            # if "@" in data["post_text"]:
+            #     find_user = re.findall(r"@(\w+)", data["post_content"])
+            #     grap_user = find_user[0]
+                # user = post_on_comm.objects.get(username=grap_user)
+                # Notification.objects.create(post_creator=user, add_post=add_post)
+            return redirect('/')
+    else:
+        form = AddCommunityForm()
+    return render(request, "community.html", {"form": form})
 
 def profilepage_view(request):
     ...
