@@ -125,7 +125,7 @@ def addcomment_view(request):
 #     form = AddBugForm(instance=ticket)
 #     return render(request, "tickets.html", context={"form": form})
 
-
+# different
 def addcommunity_view(request):
     ...
 
