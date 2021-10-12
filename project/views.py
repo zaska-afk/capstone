@@ -2,6 +2,8 @@ from django.shortcuts import render,HttpResponse, HttpResponseRedirect, reverse,
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.forms.models import model_to_dict
+from django.template import RequestContext
+from django.http import Http404
 
 from project.forms import AddCommunityForm, AddPostForm, EditCommentForm, LoginForm, SignUpForm, AddCommentForm
 from project.models import Comment, Profile, Community, Post, Vote
@@ -14,6 +16,14 @@ def index(request):
 
     return render(request, template_name, {"posts": posts})
 
+def UserView(request, id):
+    html = "user.html"
+    user = Profile.objects.get(id=id)
+    # ^ Broken here
+    posts = Post.objects.filter(author=user).order_by('-date')
+    comments = Comment.objects.filter(author=user).order_by('-date')
+    communities = Community.objects.filter(author=user).order_by('-date')
+    return render(request, html, {'user': user, 'posts': posts})
 
 def edit(request, id):
     if not request.user.is_staff or request.user.author == Post.post_creator:
@@ -91,7 +101,19 @@ def addcomment_view(request):
 
 
 def addcommunity_view(request):
-    ...
+    if request.method == "POST":
+        form = AddCommunityForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            community = Community.objects.create(
+            comm_name = data.get("comm_name"),
+            comm_about = data.get("comm_about"),
+            comm_creator = data.get("comm_creator"),
+            )
+        return redirect('/')
+    else:
+        form = AddCommunityForm()
+    return render(request, "community.html", {"form": form})
 
 def profilepage_view(request):
     ...
@@ -108,3 +130,29 @@ def downvote_view(request, post_id):
     post.downvote += 1
     post.save()
     return HttpResponseRedirect('/')
+
+# def handler404(request):
+#     return render(request, '404.html', status=404)
+
+# def handler500(request):
+#     return render(request, '500.html', status=500)
+
+# def handler404(request, *args, **argv):
+#     response = render('404.html', {},
+#                                   context_instance=RequestContext(request))
+#     response.status_code = 404
+#     return response
+
+def handler404(request, post_id):
+    try:
+        post = Post.objects.get(id=post_id)
+    except Post.DoesNotExist:
+        raise Http404("Poll does not exist")
+    return render(request, '404.html', {'poll': post})
+
+def handler500(request, post_id):
+    try:
+        post = Post.objects.get(id=post_id)
+    except Post.DoesNotExist:
+        raise Http404("Poll does not exist")
+    return render(request, '500.html', {'poll': post})

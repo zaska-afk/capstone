@@ -35,6 +35,7 @@ class Post(models.Model):
     post_on_comm = models.ForeignKey(Community, on_delete=models.CASCADE)
 
     # from ghostpost
+    # vote = models.IntegerField(default=0)
     upvote = models.IntegerField(default=0)
     downvote = models.IntegerField(default=0)
     def vote_total(self):

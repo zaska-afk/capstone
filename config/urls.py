@@ -18,6 +18,8 @@ from django.urls import path
 from project import views
 from project.views import index, addcomment_view, addcommunity_view, addpost_view
 from authuser.views import login_view, logout_view, signup_view
+# handler404 = 'project.views.handler404'
+# handler500 = 'project.views.handler500'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +32,9 @@ urlpatterns = [
     path("addpost/", addpost_view, name="addpost"),
     path('upvote/<int:post_id>/', views.upvote_view , name="like"),
     path('downvote/<int:post_id>/', views.downvote_view, name="dislike"),
+    path('user/<int:id>/', views.UserView, name='user'),
+    path( '',views.handler404 ),
+    path( '',views.handler500 ),
     
     # path("posts/<int:id>/", views.post_detail, name="post"),
     # path("community/<int:id>/", views.community_detail, name="community"),
