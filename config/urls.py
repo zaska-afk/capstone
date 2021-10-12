@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from project import views
 from project.views import index, addcomment_view, addcommunity_view, addpost_view
-from authuser.views import login_view, logout_view, signup_view
+from authuser.views import login_view, logout_view, signup_view, profile_view, edit_profile_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,9 +29,11 @@ urlpatterns = [
     path("addcommunity/", addcommunity_view, name="addcommunity"),
     path("addcomment/", addcomment_view, name="addcomment"),
     path("addpost/", addpost_view, name="addpost"),
+    path('editprofile/<int:user_id>/', edit_profile_view),
     path('upvote/<int:post_id>/', views.upvote_view , name="like"),
     path('downvote/<int:post_id>/', views.downvote_view, name="dislike"),
-    
+    path('profile/<int:user_id>/', profile_view),
+
     # path("posts/<int:id>/", views.post_detail, name="post"),
     # path("community/<int:id>/", views.community_detail, name="community"),
 ]

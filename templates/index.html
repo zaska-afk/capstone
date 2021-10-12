@@ -2,9 +2,11 @@
 
 <a href="/addpost/">Add Post</a>
 <a href="/addcommunity/">Add Community</a>
-
 <a href="/login/">Login</a>
 <a href="/logout/">Logout</a>
+<a href="/signup/">Signup</a>
+<a href="/profile/{{request.user.id}}">Your Profile</a>
+
 
 <ul>
   {% for post in posts %}

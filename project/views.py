@@ -56,6 +56,8 @@ def addpost_view(request):
         form = AddPostForm()
     return render(request, "generic_form.html", {"form": form})
 
+
+
 # Dunya - took structure some what from recipebox
 # Dunya - not sure about the structure
 # Dunya - Changed view a bit to help render. commented out olde to have a reference
