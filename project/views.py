@@ -156,6 +156,7 @@ def addcomment_view(request):
 #         form = AddCommentForm()
 #     return render(request, "comment.html", {"form": form})
 
+# Dunya _ page showing but not rendering all info
 # Dunya - New commmunity view for url id
 def community_view(request, id: str):
     com = Community.objects.get(id=id)
