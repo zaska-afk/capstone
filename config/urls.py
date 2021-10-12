@@ -24,9 +24,14 @@ urlpatterns = [
     path("logout/", views.logout_view, name="logout"),
     path("signup/", views.signup_view, name="signup"),
     path("addcommunity/", views.addcommunity_view, name="addcommunity"),
+    path("community_id/<int:id>/", views.community_view, name="community_id"),
     path("addcomment/", views.addcomment_view, name="addcomment"),
     path("addpost/", views.addpost_view, name="addpost"),
     
+
+    # Dunya's notes
     # path("posts/<int:id>/", views.post_detail, name="post"),
     # path("community/<int:id>/", views.community_detail, name="community"),
+    # path("recipes/<int:id>/", views.recipe_detail, name="recipe"),
+    # path("author/<int:id>/", views.author_detail, name="author"),
 ]

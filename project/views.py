@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render,HttpResponse, HttpResponseRedirect, reverse, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -66,8 +67,10 @@ def edit(request, id):
 
 def home_view(request):
     ...
+
 # By Dunya-trying create an add_post with @ user ability
 # Dunya - structure somewhat taken from twitterclone(Not sure about lines 84 and 85)
+
 def addpost_view(request):
     if request.method == "POST":
         form = AddPostForm(request.POST)
@@ -92,9 +95,13 @@ def addpost_view(request):
         form = AddPostForm()
     return render(request, "generic_form.html", {"form": form})
 
+
 # Dunya - took structure some what from recipebox
 # Dunya - not sure about the structure
 # Dunya - Changed view a bit to help render. commented out olde to have a reference
+
+# **Dunya working view before changes
+
 def addcomment_view(request):
     if request.method == "POST":
         form = AddCommentForm(request.POST)
@@ -115,7 +122,49 @@ def addcomment_view(request):
         form = AddCommentForm()
     return render(request, "comment.html", {"form": form})
 
+# Dunya - id view different logic for credit
+
+# def add_credit(request, id):
+#     user_now = Profile.objects.get(user=request.user)
+#     recipe_favorite = Comment.objects.get(id=id)
+#     user_now.credit.add(recipe_favorite)
+#     user_now.save()
+#     return HttpResponseRedirect(reverse("homepage"))
+
+
+
+# Dunya-New view for URL with id 
+# Dunya-Started another def above
+# Dunya-Ended started something new above
+# fields = ['comm_name', 'comm_about', 'comm_url']
+# def community(request, id_c):
+#     if request.method == "POST":
+#         form = AddCommunityForm(request.POST)
+#         if form.is_valid():
+#             data = form.cleaned_data
+#             comment_c = Community.objects.create(
+#             on_post = data.get("com_name"),
+#             comment_text = data.get("comment_text"),
+#             )
+#             comment = Post.objects.get(id=id_c) # Dunya - Not sure about use of id
+#     # template_name = "comment.html"
+#     # context = {"comment": comment}
+#     # return render(request, template_name, context) 
+#     # return render(request, template_name)
+#         return redirect('/')
+#     else:
+#         form = AddCommentForm()
+#     return render(request, "comment.html", {"form": form})
+
+# Dunya - New commmunity view for url id
+def community_view(request, id: str):
+    com = Community.objects.get(id=id)
+    return render(request, "community_id.html", {com: "com"})
+
+
+
 # Dunya- for my reference
+
 # def edit_ticket(request, ticket_id):
 #     ticket = Ticket.objects.get(id=ticket_id)
 #     if request.method == 'POST':
@@ -125,7 +174,10 @@ def addcomment_view(request):
 #     form = AddBugForm(instance=ticket)
 #     return render(request, "tickets.html", context={"form": form})
 
+
+
 # Dunya notes for addcommunity- fields = ['comm_name', 'comm_about', 'comm_url']
+
 def addcommunity_view(request):
     if request.method == "POST":
         form = AddCommunityForm(request.POST)
