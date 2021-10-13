@@ -1,10 +1,9 @@
-<h1>Community Profil Page</h1>
-
-{% for com in com %}
+<h1>Community Profile Page</h1>
+{{community_id.comm_name}} {{community_id.comm_about}} {{ com.comm_name}} {% for
+com in com %}
 <ul>
-  {{ com.comm_name}}
   <li>
-    <a href="/community_id/{{com.comm_name}}/">{{community_id.comm_name}}</a>
+    <a href="/community_id/{{com.comm_name}}/">{{community_id.comm_about}}</a>
   </li>
 
   <li>
