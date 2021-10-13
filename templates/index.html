@@ -14,14 +14,18 @@
   {% for post in posts %}
   <li><a href="/posts/{{post.post_name}}/">{{post.post_name}}</a></li>
 
-  <li>{{post.post_text}}</li>
+  <li>post text: {{post.post_text}}</li>
 
-  <li><a href="/posts/{{post.post_on_comm}}/">{{post.post_on_comm}}</a></li>
+  <li>
+    post on community:<a href="/community_id/{{post.post_on_comm.id}}"
+      >{{post.post_on_comm}}</a
+    >
+  </li>
   <br />
-  <a href="/addcomment/"><button>Comment</button></a>
   <br />
   <li>Credit: {{ post.vote_total }}</li>
   <br />
+  <a href="/addcomment/"><button>Comment</button></a>
   <button><a href="/upvote/{{post.id}}/">Give&#128077;</a></button>
   <button><a href="/downvote/{{post.id}}/">Take&#128078;</a></button>
   <hr />
