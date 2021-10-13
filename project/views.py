@@ -143,6 +143,10 @@ def downvote_view(request, post_id):
 #     response.status_code = 404
 #     return response
 
+def community_view(request, id: str):
+    com = Community.objects.get(id=id)
+    return render(request, "community_id.html", {com: "com"})
+
 def handler404(request, post_id):
     try:
         post = Post.objects.get(id=post_id)

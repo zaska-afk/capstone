@@ -1,0 +1,17 @@
+<h1>Your Profile Page!</h1>
+
+<a href="/addpost/">Add Post</a>
+<a href="/addcommunity/">Add Community</a>
+<a href="/login/">Login</a>
+<a href="/logout/">Logout</a>
+<a href="/profile/{{user.id}}">Your Profile</a>
+<a href="/">Home</a>
+<br />
+
+<p>Bio: {{user.bio}}</p>
+<p>Displayname: {{user.display_name}}</p>
+
+<p>Username: {{user.user.username}}</p>
+<p>Credits: {{user.credit}}</p>
+
+<a href="/editprofile/{{user.id}}/">Edit Profile</a>
