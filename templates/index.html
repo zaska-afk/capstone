@@ -10,7 +10,7 @@
   {% for post in posts %}
   <li><a href="/posts/{{post.post_name}}/">{{post.post_name}}</a></li>
 
-  <li><a href="/posts/{{post.post_text}}/">{{post.post_text}}</a></li>
+  <li><a href="/posts/{{post.post_text}}/">{{post.post_text|urlize}}</a></li>
 
   <li><a href="/posts/{{post.post_on_comm}}/">{{post.post_on_comm}}</a></li>
   <br />
@@ -22,5 +22,3 @@
   {% endcomment %} {% endfor %}
 </ul>
 
-test to make sure a link can work
-<a href="https://www.google.com/" target="_blank">google link</a>
