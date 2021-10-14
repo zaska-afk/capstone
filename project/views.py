@@ -6,6 +6,13 @@ from django.forms.models import model_to_dict
 from project.forms import AddCommunityForm, AddPostForm, EditCommentForm, LoginForm, SignUpForm, AddCommentForm
 from project.models import Comment, Profile, Community, Post, Vote
 import re
+
+# import base64
+# from external_links.signals import external_click
+# from django.dispatch import receiver
+# from django.views.generic import RedirectView
+
+
 # Create your views here.
 # Dunya added redirect and re to imports
 def index(request):
@@ -131,3 +138,20 @@ def addcommunity_view(request):
 
 def profilepage_view(request):
     ...
+
+# Dunya-I think this the right view
+# class ExternalLinkView(RedirectView):
+
+#     permanent = False
+
+#     def dispatch(self, request, external_url, *args, **kwargs):
+#         ip = request.META['REMOTE_ADDR']
+#         self.url = base64.decodestring(external_url)
+#         external_click.send_robust(sender=self.__class__, url=self.url, ip=ip)
+#         return super(ExternalLinkView, self).dispatch(request, *args, **kwargs)
+
+# Dunya- Not sure about this
+
+# @receiver(external_click)
+# def my_callback(sender, url, ip):
+#     print("tracked click to {} from {}".format(url, ip))

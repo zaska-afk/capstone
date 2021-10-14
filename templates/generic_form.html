@@ -4,10 +4,10 @@
 </form>
 
 {% for i in addpost%}
-<p>{{post_content}}</p>
+<p>{{post_content|urlize}}</p> 
 <p>{{post_creator}}</p>
 {% endfor%}
 <br />
 {% for i in post%}
-<p>{{comment}}</p>
+<p>{{comment|urlize}}</p>
 {% endfor%}

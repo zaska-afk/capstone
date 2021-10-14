@@ -27,6 +27,12 @@ urlpatterns = [
     path("addcomment/", views.addcomment_view, name="addcomment"),
     path("addpost/", views.addpost_view, name="addpost"),
     
+
+    
     # path("posts/<int:id>/", views.post_detail, name="post"),
     # path("community/<int:id>/", views.community_detail, name="community"),
 ]
+
+# urlpatterns = patterns('',
+#     url(r'', include('external_urls.urls')),
+# )
