@@ -1,21 +1,20 @@
-<h1>Community Profile Page</h1>
-{{community_id.comm_name}} {{community_id.comm_about}} {{ com.comm_name}} {% for
-com in com %}
-<ul>
-  <li>
-    <a href="/community_id/{{com.comm_name}}/">{{community_id.comm_about}}</a>
-  </li>
+<h1>{{ com.comm_name}} Community Page</h1>
 
-  <li>
-    <a href="/community_id/{{com.comm_creator}}/"
-      >{{community_id.comm_creator}}</a
-    >
-  </li>
+<a href="/addpost/">Add Post</a>
+<a href="/addcommunity/">Add Community</a>
+<a href="/login/">Login</a>
+<a href="/logout/">Logout</a>
+<a href="/profile/{{user.id}}">Your Profile</a>
+<a href="/">Home</a>
+<br />
 
-  <li>
-    <a href="/community_id/{{com.comm_about}}/">{{community_id.comm_about}}</a>
-  </li>
+<p>Website: {{ com.comm_url}}</p>
+<p>About: {{ com.comm_about}}</p>
+<p>Community Creator: {{ com.comm_creator}}</p>
+<p>Date Created: {{ com.created_on}}</p>
 
-  <a href="/addcomment/"><button>Comment</button></a>
-</ul>
-{% endfor %}
+
+
+{% if com.comm_creator%}
+<button><a href="/editCommunity/{{com.id}}">Edit Community</a></li></button>
+{% endif %}

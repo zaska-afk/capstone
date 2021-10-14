@@ -41,3 +41,8 @@ class EditCommentForm(ModelForm):
     class Meta:
         model = Comment
         fields = ['on_post', 'comment_text']
+
+class EditCommunityForm(ModelForm):
+    class Meta:
+        model = Community
+        fields = ['comm_name', 'comm_about', 'comm_url']
