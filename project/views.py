@@ -5,11 +5,11 @@ from django.forms.models import model_to_dict
 from django.template import RequestContext
 from django.http import Http404
 
-from project.forms import AddCommunityForm, AddPostForm, EditCommentForm, LoginForm, SignUpForm, AddCommentForm
+from project.forms import AddCommunityForm, AddPostForm, EditCommentForm, LoginForm, SignUpForm, AddCommentForm, EditCommunityForm
 from project.models import Comment, Profile, Community, Post, Vote
 import re
 # Create your views here.
-# Dunya added redirect and re to imports
+
 def index(request):
     template_name = 'index.html'
     posts = Post.objects.all()
@@ -66,38 +66,20 @@ def addpost_view(request):
         form = AddPostForm()
     return render(request, "generic_form.html", {"form": form})
 
-# Dunya - took structure some what from recipebox
-# Dunya - not sure about the structure
-# Dunya - Changed view a bit to help render. commented out olde to have a reference
+
 def addcomment_view(request):
     if request.method == "POST":
         form = AddCommentForm(request.POST)
         if form.is_valid():
-    
-    # comment = Post.objects.get(id=id) # Dunya - Not sure about use of id
             data = form.cleaned_data
             comment = Comment.objects.create(
             on_post = data.get("on_post"),
             comment_text = data.get("comment_text"),
             )
-    # template_name = "comment.html"
-    # context = {"comment": comment}
-    # return render(request, template_name, context) 
-    # return render(request, template_name)
         return redirect('/')
     else:
         form = AddCommentForm()
     return render(request, "comment.html", {"form": form})
-
-# Dunya- for my reference
-# def edit_ticket(request, ticket_id):
-#     ticket = Ticket.objects.get(id=ticket_id)
-#     if request.method == 'POST':
-#         form = AddBugForm(request.POST, instance=ticket)
-#         form.save()
-#         return HttpResponseRedirect(reverse("home"))
-#     form = AddBugForm(instance=ticket)
-#     return render(request, "tickets.html", context={"form": form})
 
 
 def addcommunity_view(request):
@@ -131,21 +113,24 @@ def downvote_view(request, post_id):
     post.save()
     return HttpResponseRedirect('/')
 
-# def handler404(request):
-#     return render(request, '404.html', status=404)
-
-# def handler500(request):
-#     return render(request, '500.html', status=500)
-
-# def handler404(request, *args, **argv):
-#     response = render('404.html', {},
-#                                   context_instance=RequestContext(request))
-#     response.status_code = 404
-#     return response
 
 def community_view(request, id: str):
     com = Community.objects.get(id=id)
     return render(request, "community_id.html", {com: "com"})
+
+def editCommunity(request, id):
+    if request.user.is_staff == Community.comm_creator:
+        return HttpResponse("Access Denied - Need staff/admin permissions")
+    com = Community.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = EditCommunityForm(request.POST, instance=com)
+        form.save()
+        return HttpResponseRedirect(reverse('homepage'))
+
+    form = EditCommunityForm(initial=model_to_dict(com))
+    return render(request, "generic_form.html", {'form': form})
+
 
 def handler404(request, post_id):
     try:
