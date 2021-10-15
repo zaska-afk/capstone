@@ -10,6 +10,9 @@ from project.models import Comment, Profile, Community, Post, Vote
 import re
 # Create your views here.
 
+def navbar_view(request):
+    return render(request, 'navbar.html')
+
 def index(request):
     template_name = 'index.html'
     posts = Post.objects.all()
@@ -116,7 +119,7 @@ def downvote_view(request, post_id):
 
 def community_view(request, id: str):
     com = Community.objects.get(id=id)
-    return render(request, "community_id.html", {com: "com"})
+    return render(request, "community_id.html", {"com": com})
 
 def editCommunity(request, id):
     if request.user.is_staff == Community.comm_creator:

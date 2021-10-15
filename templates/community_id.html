@@ -8,10 +8,12 @@
 <a href="/">Home</a>
 <br />
 
-<p>Website: {{ com.comm_url}}</p>
+<p>Website: {{ com.comm_url|urlize}}</p>
 <p>About: {{ com.comm_about}}</p>
 <p>Community Creator: {{ com.comm_creator}}</p>
 <p>Date Created: {{ com.created_on}}</p>
+
+
 
 {% if com.comm_creator%}
 <button><a href="/editCommunity/{{com.id}}">Edit Community</a></li></button>

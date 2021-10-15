@@ -1,0 +1,33 @@
+{% extends "navbar.html" %} {% block content %}
+<body>
+  <html>
+    {% for post in posts %}
+    <div class="container text-center">
+      <div class="col-sm-4">
+        <p><strong>Post:</strong></p>
+        <h3>
+          <strong
+            ><a href="/posts/{{post.post_name}}/">{{post.post_name}}</a></strong
+          >
+        </h3>
+        <p><strong>Community:</strong></p>
+        <p><a href="/posts/{{post.post_on_comm}}/">{{post.post_on_comm}}</a></p>
+        <p><strong>Website:</strong></p>
+        <a href="/posts/{{post.post_text}}/">{{post.post_text}}</a> <br /><br />
+        <br />
+        <a href="/addcomment/"><button>Comment</button></a>
+        <br /><br />
+        Credit: {{ post.vote_total }}
+        <br /><br />
+        <button><a href="/upvote/{{post.id}}/">Give&#128077;</a></button>
+        <button><a href="/downvote/{{post.id}}/">Take&#128078;</a></button>
+        <hr />
+        {% endfor %}
+        <!-- {% comment %}
+        <li><a href="/recipes/{{recipe.id}}/">{{recipe.title}}</a></li>
+        {% endcomment %}  -->
+      </div>
+    </div>
+  </html>
+</body>
+{% endblock %}
