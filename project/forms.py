@@ -2,12 +2,7 @@ from django import forms
 from django.db import models
 from django.db.models import fields
 from django.forms.models import ModelForm
-from project.models import Profile, Post, Community, Comment
-
-# class SignUpForm(ModelForm):
-#     class Meta:
-#         model = Profile
-#         fields = ['username', 'password', 'email']
+from project.models import Post, Community, Comment
 
 
 class SignUpForm(forms.Form):

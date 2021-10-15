@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from project import views
-from project.views import index, addcomment_view, addcommunity_view, addpost_view
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+from project.views import index, addcomment_view, addcommunity_view, addpost_view, navbar_view, upvote_view, downvote_view
 from authuser.views import login_view, logout_view, signup_view
 
 urlpatterns = [
@@ -28,9 +29,12 @@ urlpatterns = [
     path("addcommunity/", addcommunity_view, name="addcommunity"),
     path("addcomment/", addcomment_view, name="addcomment"),
     path("addpost/", addpost_view, name="addpost"),
-    path('upvote/<int:post_id>/', views.upvote_view , name="like"),
-    path('downvote/<int:post_id>/', views.downvote_view, name="dislike"),
+    path('upvote/<int:post_id>/', upvote_view , name="like"),
+    path('downvote/<int:post_id>/', downvote_view, name="dislike"),
+    path('', navbar_view),
     
     # path("posts/<int:id>/", views.post_detail, name="post"),
     # path("community/<int:id>/", views.community_detail, name="community"),
 ]
+
+urlpatterns += staticfiles_urlpatterns()

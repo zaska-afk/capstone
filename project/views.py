@@ -1,10 +1,9 @@
-from django.shortcuts import render,HttpResponse, HttpResponseRedirect, reverse, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect, reverse, redirect
 from django.contrib.auth.decorators import login_required
 from django.forms.models import model_to_dict
 
-from project.forms import AddCommunityForm, AddPostForm, EditCommentForm, LoginForm, SignUpForm, AddCommentForm
-from project.models import Comment, Profile, Community, Post, Vote
+from project.forms import AddCommunityForm, AddPostForm, EditCommentForm, AddCommentForm
+from project.models import Comment, Community, Post, Vote
 import re
 # Create your views here.
 # Dunya added redirect and re to imports
@@ -108,3 +107,6 @@ def downvote_view(request, post_id):
     post.downvote += 1
     post.save()
     return HttpResponseRedirect('/')
+
+def navbar_view(request):
+    return render(request, 'navbar.html')

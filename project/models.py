@@ -3,17 +3,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from authuser.models import Profile
 
-# first models 
-# class Profile(models.Model):
-#     display_name = models.CharField(max_length=50)
-#     site_user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     bio = models.CharField(max_length=200, blank=True)
-#     credit = models.IntegerField(default=0)
-#     created_on = models.DateField(auto_now_add=True)
-
-#     def __str__(self):
-#         return self.display_name
-#         # return str(self.display_name)
 
 class Community(models.Model):
     comm_name = models.TextField(max_length=200)
