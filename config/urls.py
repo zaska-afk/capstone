@@ -17,13 +17,14 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 from project import views
-from project.views import index, addcomment_view, addcommunity_view, addpost_view, navbar_view
+from project.views import index, addcomment_view, addcommunity_view, addpost_view, navbar_view, community_view, navbar_view
 from authuser.views import login_view, logout_view, signup_view, profile_view, edit_profile_view
 # handler404 = 'project.views.handler404'
 # handler500 = 'project.views.handler500'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path("", views.IndexView.as_view(), name="homepage"),
     path("", index, name="homepage"),
     path("login/", login_view, name="login"),
     path("logout/", logout_view, name="logout"),
@@ -38,7 +39,8 @@ urlpatterns = [
     path( '',views.handler500 ),
     path('editprofile/<int:user_id>/', edit_profile_view),
     path('profile/<int:user_id>/', profile_view),
-    path("community_id/<int:id>/", views.community_view, name="community_id"),
+    # path("community_id/<int:id>/", views.CommunityView.as_view(), name="community_id"),
+    path("community_id/<int:id>/", community_view, name="community_id"),
     path("editCommunity/<int:id>/", views.editCommunity, name='editcommunity'),
     path('', navbar_view),
     

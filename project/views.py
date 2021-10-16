@@ -3,21 +3,41 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.forms.models import model_to_dict
 from django.template import RequestContext
-from django.http import Http404
+from django.http import Http404, request
 
 from project.forms import AddCommunityForm, AddPostForm, EditCommentForm, LoginForm, SignUpForm, AddCommentForm, EditCommunityForm
 from project.models import Comment, Profile, Community, Post, Vote
 import re
+from django.views import View
 # Create your views here.
+
+
+#Dunya- the 3 class based views are NavView, IndexView, and CommunityView
 
 def navbar_view(request):
     return render(request, 'navbar.html')
+
+
+#Dunya-classbased view 1
+# class NavView(View):
+#     def navbar_view(self, request):
+#         return render(request, 'navbar.html')
+
 
 def index(request):
     template_name = 'index.html'
     posts = Post.objects.all()
 
     return render(request, template_name, {"posts": posts})
+
+# Dunya-classbased view 2
+# class IndexView(View):
+#     def index(self, request):
+#         template_name = 'index.html'
+#         posts = Post.objects.all()
+
+#         return render(request, template_name, {"posts": posts})
+
 
 def UserView(request, id):
     html = "user.html"
@@ -43,6 +63,8 @@ def edit(request, id):
 
 def home_view(request):
     ...
+
+
 # By Dunya-trying create an add_post with @ user ability
 # Dunya - structure somewhat taken from twitterclone(Not sure about lines 84 and 85)
 def addpost_view(request):
@@ -120,6 +142,14 @@ def downvote_view(request, post_id):
 def community_view(request, id: str):
     com = Community.objects.get(id=id)
     return render(request, "community_id.html", {"com": com})
+
+
+# class based view 3
+# class CommunityView(View):
+#     def community_view(self,request, id: str):
+#         com = Community.objects.get(id=id)
+#         return render(request, "community_id.html", {"com": com})
+
 
 def editCommunity(request, id):
     if request.user.is_staff == Community.comm_creator:
