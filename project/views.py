@@ -107,15 +107,12 @@ def profilepage_view(request):
 # Comment upvote/downvote
 def upvote_view(request, post_id, ):
     post = Post.objects.get(id=post_id)
-    post.credit += 1
-    post.post_creator.credit += 1
-    post.save()
-
     profile = Profile.objects.get(id=post_id)
     profile.credit -= 1
     profile.save()
+    post.credit += 1
+    post.save()
     
-
     
     return HttpResponseRedirect('/')
 
