@@ -1,20 +1,61 @@
-<h1>{{ com.comm_name}} Community Page</h1>
-
-<a href="/addpost/">Add Post</a>
-<a href="/addcommunity/">Add Community</a>
-<a href="/login/">Login</a>
-<a href="/logout/">Logout</a>
-<a href="/profile/{{user.id}}">Your Profile</a>
-<a href="/">Home</a>
-<br />
-
-<p>Website: {{ com.comm_url|urlize}}</p>
-<p>About: {{ com.comm_about}}</p>
-<p>Community Creator: {{ com.comm_creator}}</p>
-<p>Date Created: {{ com.created_on}}</p>
+{% extends "navbar.html" %} {% block content %}
 
 
+
+    <!-- Container (POSTS Section) -->
+    <div id="tour" class="bg-1">
+      <div class="container">
+        <h3 class="text-center">{{com.comm_name}} Community Page</h3>
+        <p class="text-center">
+          POSTS in {{com.comm_name}}<br />
+          
+        </p>
+        <p class="text-center">
+          Website: {{ com.comm_url|urlize}}<br />  
+        </p>
+                <p class="text-center">
+          About: {{ com.comm_about}}<br />  
+        </p>
+                <p class="text-center">
+          Community Creator: {{ com.comm_creator}}<br />  
+        </p>
+                <p class="text-center">
+          Date Created: {{ com.created_on}}<br />  
+        </p>
+
+        {% comment %} {%if com.comm_name == post.post_on_comm %} {% endcomment %}
+        {% comment %} {%if post.post_on_comm == com.comm_name %} {% endcomment %}
+        {% for post.post_on_comm in com.comm_name %}
+        {% comment %} {% for com.comm_name in post.post_on_comm %} {% endcomment %}
+        <ul class="list-group">
+          <li class="list-group-item"><p>
+                <strong
+                  >Post:
+                  <a href="/posts/{{post.post_name}}/"
+                    >{{post.post_name}}</a
+                  ></strong>
+                Community:
+                <a href="/community_id/{{post.post_on_comm.id}}"
+                      >{{post.post_on_comm}}</a
+                    >
+                Text:
+                <a href="/posts/{{post.post_text}}/">{{post.post_text|urlize}}</a>
+              </p>Credit: {{ post.vote_total }}
+              
+              <button class="btn"><a href="/upvote/{{post.id}}/">Give&#128077;</a></button>
+              <button class="btn">
+                <a href="/downvote/{{post.id}}/">Take&#128078;</a></button>
+              <button class="btn pull-right" data-toggle="modal" data-target="#myModal">
+                Comment
+              </button></li>
+            </ul>
+            {% endfor %}
+            {% comment %} {%endif%} {% endcomment %}
+      </div>
+    </div>
 
 {% if com.comm_creator%}
 <button><a href="/editCommunity/{{com.id}}">Edit Community</a></li></button>
 {% endif %}
+
+{% endblock %}

@@ -274,15 +274,18 @@
         <div class="col-sm-4">
           <p class="text-center"><strong>Dunya Moss</strong></p>
           <br />
-          <a href="#demo2" data-toggle="collapse">
-            <img
-              src="bandmember.jpg"
-              class="img-circle person"
-              alt="Random Name"
-              width="255"
-              height="255"
-            />
-          </a>
+          <p>
+            <a href="#demo4" data-toggle="collapse">
+              {% load static %}
+              <img
+                src="{% static "project/media/dunya.jpg" %}"
+                class="img-circle person"
+                alt="anna's pic"
+                width="255"
+                height="255"
+              />
+            </a>
+          </p>
           <div id="demo2" class="collapse">
             <p>SciFi Fan</p>
             <p>Loves Art</p>

@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse, HttpResponseRedirect, reverse, redirect
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect, reverse, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.forms.models import model_to_dict
@@ -85,6 +85,7 @@ def addcomment_view(request):
     return render(request, "comment.html", {"form": form})
 
 
+
 def addcommunity_view(request):
     if request.method == "POST":
         form = AddCommunityForm(request.POST)
@@ -130,10 +131,17 @@ def downvote_view(request, post_id):
     post.save()
     return HttpResponseRedirect('/')
 
+def commentlist_view(request, id: str):
+    post = Post.objects.get(id=id)
+    community = Post.post_on_comm
+    comments = Comment.objects.filter(id = id)
+    comments = post.comments.all()
+    return render(request, 'comment_list.html', {'comments': comments})
 
 def community_view(request, id: str):
     com = Community.objects.get(id=id)
-    return render(request, "community_id.html", {"com": com})
+    posts = Post.objects.get(id=id)
+    return render(request, "community_id.html", {"com": com, "post":posts})
 
 def editCommunity(request, id):
     if request.user.is_staff == Community.comm_creator:

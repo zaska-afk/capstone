@@ -1,0 +1,15 @@
+{% extends "navbar.html" %} {% block content %}
+
+<h3> Tweet Info </h3>
+
+
+<p>
+    <ul>
+        <br>
+        <li>Tweet: {{tweet.body}}</li>
+        <li>Username: {{tweet.username}} <a href="/user/{{ tweet.author.id }}">@{{ tweet.author.username }}</a></li>
+        <li>Date: {{tweet.date}}</li>
+        <li>ID: {{tweet.id}}</li>
+        <br>
+    </ul>
+</p>
