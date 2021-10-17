@@ -118,10 +118,11 @@
           <li>
             <a href="/signup/"><p>SIGNUP</p></a>
           </li>
-          {% endif %}
-
-          <li><a href="/login/">LOGIN</a></li>
+          {% endif %} {%if request.user.is_authenticated%}
           <li><a href="/logout/">LOGOUT</a></li>
+          {% else %}
+          <li><a href="/login/">LOGIN</a></li>
+          {% endif %}
         </ul>
       </div>
     </div>

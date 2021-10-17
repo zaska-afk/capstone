@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.forms.models import model_to_dict
 from django.template import RequestContext
 from django.http import Http404
-
+from django.views import View 
 from project.forms import AddCommunityForm, AddPostForm, EditCommentForm, LoginForm, SignUpForm, AddCommentForm, EditCommunityForm
 from project.models import Comment, Profile, Community, Post, Vote
 import re
@@ -104,12 +104,18 @@ def addcommunity_view(request):
 # def profilepage_view(request):
 #     ...
 
-def upvote_view(request, post_id):
-    post = Post.objects.get(id=post_id)
-    post.credit += 1
-    post.save()
-    return HttpResponseRedirect('/')
+# def upvote_view(request, post_id):
+#     post = Post.objects.get(id=post_id)
+#     post.credit += 1
+#     post.save()
+#     return HttpResponseRedirect('/')
 
+class UpVoteView(View):
+    def get(self, request, post_id):
+        post = Post.objects.get(id=post_id)
+        post.credit += 1
+        post.save()
+        return HttpResponseRedirect('/')
 
 # def upvote_view(request, post_id):
 #     post = Post.objects.get(id=post_id)
@@ -123,21 +129,28 @@ def upvote_view(request, post_id):
 
 #     return HttpResponseRedirect('/')
 
-def downvote_view(request, post_id):
-    post = Post.objects.get(id=post_id)
-    post.credit -= 1
-    post.save()
-    return HttpResponseRedirect('/')
+class DownVoteView(View):
+    def get(self, request, post_id):
+        post = Post.objects.get(id=post_id)
+        post.credit -= 1
+        post.save()
+        return HttpResponseRedirect('/')        
 
-def downvote_view(request, post_id):
-    post = Post.objects.get(id=post_id)
-    # profile = Profile.objects.get(id=post_id)
-    # profile.credit += 1
-    # profile.save()
+# def downvote_view(request, post_id):
+#     post = Post.objects.get(id=post_id)
+#     post.credit -= 1
+#     post.save()
+#     return HttpResponseRedirect('/')
 
-    post.credit -= 1
-    post.save()
-    return HttpResponseRedirect('/')
+# def downvote_view(request, post_id):
+#     post = Post.objects.get(id=post_id)
+#     # profile = Profile.objects.get(id=post_id)
+#     # profile.credit += 1
+#     # profile.save()
+
+#     post.credit -= 1
+#     post.save()
+#     return HttpResponseRedirect('/')
 
 def commentlist_view(request, id: str):
     post = Post.objects.get(id=id)
@@ -146,9 +159,14 @@ def commentlist_view(request, id: str):
     comments = post.comments.all()
     return render(request, 'comment_list.html', {'comments': comments})
 
-def community_view(request, id: str):
-    com = Community.objects.get(id=id)
-    return render(request, "community_id.html", {"com": com})
+class CommunityView(View):
+    def get(self, request, id: str):
+        com = Community.objects.get(id=id)
+        return render(request, "community_id.html", {"com": com})
+
+# def community_view(request, id: str):
+#     com = Community.objects.get(id=id)
+#     return render(request, "community_id.html", {"com": com})
 
 def editCommunity(request, id):
     if request.user.is_staff == Community.comm_creator:
