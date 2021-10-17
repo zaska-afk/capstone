@@ -2,8 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Theme Made By www.w3schools.com - No Copyright -->
-    <title>Bootstrap Theme The Band</title>
+    <title>Capstone</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -31,17 +30,18 @@
       h4 {
         margin: 10px 0 30px 0;
         letter-spacing: 10px;
-        font-size: 20px;
+        font-size: 30px;
         color: #111;
       }
       .container {
         padding: 80px 120px;
       }
       .person {
-        border: 10px solid transparent;
+        border: 15px solid transparent;
         margin-bottom: 25px;
-        width: 80%;
-        height: 80%;
+        background: #555;
+        width: 255;
+        height: 255;
         opacity: 0.7;
       }
       .person:hover {
@@ -257,8 +257,9 @@
           <p class="text-center"><strong>Zach Balaska</strong></p>
           <br />
           <a href="#demo" data-toggle="collapse">
+            {% load static %}
             <img
-              src="bandmember.jpg"
+              src="{% static "project/media/elephant.jpg" %}"
               class="img-circle person"
               alt="Random Name"
               width="255"
@@ -275,10 +276,11 @@
           <p class="text-center"><strong>Dunya Moss</strong></p>
           <br />
           <a href="#demo2" data-toggle="collapse">
+            {% load static %}
             <img
-              src="bandmember.jpg"
+              src="{% static "project/media/dunya.jpg" %}"
               class="img-circle person"
-              alt="Random Name"
+              alt="dunya pic"
               width="255"
               height="255"
             />
@@ -293,10 +295,11 @@
           <p class="text-center"><strong>Rosalia Shaw</strong></p>
           <br />
           <a href="#demo3" data-toggle="collapse">
+            {% load static %}
             <img
-              src="bandmember.jpg"
+              src="{% static "project/media/elephant.jpg" %}"
               class="img-circle person"
-              alt="Random Name"
+              alt="Rosalia's pic"
               width="255"
               height="255"
             />
@@ -328,24 +331,25 @@
             <p>Scuba Diver</p>
           </div>
         </div>
-        <div class="col-sm-4">
+        <!-- <div class="col-sm-4">
           <p class="text-center"><strong>Kirill Savvun</strong></p>
           <br />
           <a href="#demo5" data-toggle="collapse">
+            {% load static %}
             <img
-              src="bandmember.jpg"
+              src="{% static "project/media/elephant.jpg" %}"
               class="img-circle person"
-              alt="Random Name"
+              alt="Kirill pic"
               width="255"
               height="255"
             />
           </a>
-          <div id="demo5" class="collapse">
-            <p>Bass player</p>
+          <div id="demo5" class="collapse"> -->
+            <!-- <p>Bass player</p>
             <p>Loves math</p>
             <p>Member since 2005</p>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 
