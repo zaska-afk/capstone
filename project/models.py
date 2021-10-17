@@ -16,7 +16,7 @@ from authuser.models import Profile
 #         # return str(self.display_name)
 
 class Community(models.Model):
-    comm_name = models.TextField(max_length=200)
+    comm_name = models.CharField(max_length=60)
     comm_about = models.TextField(max_length=2000, default="Welcome to the Community")
     comm_creator = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     created_on = models.DateField(auto_now_add=True)
@@ -28,7 +28,7 @@ class Community(models.Model):
         # return str(self.comm_name)
 
 class Post(models.Model):
-    post_name = models.TextField(max_length=200)
+    post_name = models.CharField(max_length=60)
     post_text = models.TextField()
     post_creator = models.ForeignKey(Profile, on_delete=models.CASCADE,null=True)
     created_on = models.DateField(auto_now_add=True)

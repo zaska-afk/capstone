@@ -31,21 +31,21 @@
       h4 {
         margin: 10px 0 30px 0;
         letter-spacing: 10px;
-        font-size: 20px;
+        font-size: 30px;
         color: #111;
       }
       .container {
         padding: 80px 120px;
       }
       .person {
-        border: 10px solid transparent;
+        border: 10px solid #2d2d30;
         margin-bottom: 25px;
-        width: 80%;
-        height: 80%;
+        width: 255;
+        height: 255;
         opacity: 0.7;
       }
       .person:hover {
-        border-color: #f1f1f1;
+        border-color: #7393B3;
       }
       .bg-1 {
         background: #2d2d30;
@@ -257,13 +257,14 @@
           <p class="text-center"><strong>Zach Balaska</strong></p>
           <br />
           <a href="#demo" data-toggle="collapse">
-            <img
-              src="bandmember.jpg"
-              class="img-circle person"
-              alt="Random Name"
-              width="255"
-              height="255"
-            />
+            {% load static %}
+              <img
+                src="{% static "project/media/anna.jpg" %}"
+                class="img-circle person"
+                alt="zach's pic"
+                width="255"
+                height="255"
+              />
           </a>
           <div id="demo" class="collapse">
             <p>Loves Language Learning</p>
@@ -275,13 +276,14 @@
           <p class="text-center"><strong>Dunya Moss</strong></p>
           <br />
           <a href="#demo2" data-toggle="collapse">
-            <img
-              src="bandmember.jpg"
-              class="img-circle person"
-              alt="Random Name"
-              width="255"
-              height="255"
-            />
+            {% load static %}
+              <img
+                src="{% static "project/media/dunya.jpg" %}"
+                class="img-circle person"
+                alt="dunya's pic"
+                width="255"
+                height="255"
+              />
           </a>
           <div id="demo2" class="collapse">
             <p>SciFi Fan</p>
@@ -293,13 +295,14 @@
           <p class="text-center"><strong>Rosalia Shaw</strong></p>
           <br />
           <a href="#demo3" data-toggle="collapse">
-            <img
-              src="bandmember.jpg"
-              class="img-circle person"
-              alt="Random Name"
-              width="255"
-              height="255"
-            />
+            {% load static %}
+              <img
+                src="{% static "project/media/anna.jpg" %}"
+                class="img-circle person"
+                alt="Rosalia's pic"
+                width="255"
+                height="255"
+              />
           </a>
           <div id="demo3" class="collapse">
             <p>Bass player</p>
@@ -328,7 +331,7 @@
             <p>Scuba Diver</p>
           </div>
         </div>
-        <div class="col-sm-4">
+        <!-- <div class="col-sm-4">
           <p class="text-center"><strong>Kirill Savvun</strong></p>
           <br />
           <a href="#demo5" data-toggle="collapse">
@@ -345,7 +348,7 @@
             <p>Loves math</p>
             <p>Member since 2005</p>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -391,41 +394,6 @@
   </body>
 </html>
 {% endblock %}
-
-
-
-
-{% comment %} <h1>Capstone</h1>
-<h2>Hello {{request.user.username}}</h2>
-
-<a href="/addpost/">Add Post</a>
-<a href="/addcommunity/">Add Community</a>
-
-<a href="/login/">Login</a>
-<a href="/logout/">Logout</a>
-<a href="/signup/">Signup</a>
-<a href="/profile/{{request.user.id}}">Your Profile</a>
-<ul>
-  {% for post in posts %}
-  <li><a href="/posts/{{post.post_name}}/">{{post.post_name}}</a></li>
-
-  <li>post text: {{post.post_text|urlize}}</li>
-
-  <li>
-    post on community:<a href="/community_id/{{post.post_on_comm.id}}"
-      >{{post.post_on_comm}}</a
-    >
-  </li>
-  <br />
-  <br />
-  <li>Credit: {{ post.vote_total }}</li>
-  <br />
-  <a href="/addcomment/"><button>Comment</button></a>
-  <button><a href="/upvote/{{post.id}}/">Give&#128077;</a></button>
-  <button><a href="/downvote/{{post.id}}/">Take&#128078;</a></button>
-  <hr />
-{% endfor %}
-</ul> {% endcomment %}
 
 
 

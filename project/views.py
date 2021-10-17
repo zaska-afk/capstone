@@ -67,7 +67,7 @@ def addpost_view(request):
             return redirect('/')
     else:
         form = AddPostForm()
-    return render(request, "generic_form.html", {"form": form})
+    return render(request, "post.html", {"form": form})
 
 
 def addcomment_view(request):
