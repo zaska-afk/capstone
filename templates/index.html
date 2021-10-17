@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <!-- Theme Made By www.w3schools.com - No Copyright -->
-    <title>Bootstrap Theme The Band</title>
+    <title>Capstone</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -257,10 +257,11 @@
           <p class="text-center"><strong>Zach Balaska</strong></p>
           <br />
           <a href="#demo" data-toggle="collapse">
+          {% load static %}
             <img
-              src="bandmember.jpg"
+              src="{% static "project/media/zach.jpg" %}"
               class="img-circle person"
-              alt="Random Name"
+              alt="zach"
               width="255"
               height="255"
             />
@@ -295,19 +296,22 @@
         <div class="col-sm-4">
           <p class="text-center"><strong>Rosalia Shaw</strong></p>
           <br />
-          <a href="#demo3" data-toggle="collapse">
-            <img
-              src="bandmember.jpg"
-              class="img-circle person"
-              alt="Random Name"
-              width="255"
-              height="255"
-            />
-          </a>
-          <div id="demo3" class="collapse">
-            <p>Bass player</p>
-            <p>Loves math</p>
-            <p>Member since 2005</p>
+          <p>
+            <a href="#demo4" data-toggle="collapse">
+              {% load static %}
+              <img
+                src="{% static "project/media/anna.jpg" %}"
+                class="img-circle person"
+                alt="anna's pic"
+                width="255"
+                height="255"
+              />
+            </a>
+          </p>
+          <div id="demo4" class="collapse">
+            <p>Piano Player</p>
+            <p>Loves Great Danes</p>
+            <p>Scuba Diver</p>
           </div>
         </div>
         <div class="col-sm-4">
@@ -332,26 +336,26 @@
           </div>
         </div>
         <div class="col-sm-4">
-          <p class="text-center"><strong>Kirill Savvun</strong></p>
+          <p class="text-center"><strong>Kirill Savuun</strong></p>
           <br />
-          <a href="#demo5" data-toggle="collapse">
-            <img
-              src="bandmember.jpg"
-              class="img-circle person"
-              alt="Random Name"
-              width="255"
-              height="255"
-            />
-          </a>
-          <div id="demo5" class="collapse">
-            <p>Bass player</p>
-            <p>Loves math</p>
-            <p>Member since 2005</p>
+          <p>
+            <a href="#demo4" data-toggle="collapse">
+              {% load static %}
+              <img
+                src="{% static "project/media/anna.jpg" %}"
+                class="img-circle person"
+                alt="anna's pic"
+                width="255"
+                height="255"
+              />
+            </a>
+          </p>
+          <div id="demo4" class="collapse">
+            <p>Piano Player</p>
+            <p>Loves Great Danes</p>
+            <p>Scuba Diver</p>
           </div>
         </div>
-      </div>
-    </div>
-
     <!-- Footer -->
     <footer class="text-center">
       <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">

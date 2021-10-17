@@ -13,20 +13,21 @@ import re
 def navbar_view(request):
     return render(request, 'navbar.html')
 
+@login_required
 def index(request):
     template_name = 'index.html'
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('created_on')
 
     return render(request, template_name, {"posts": posts})
 
-def UserView(request, id):
-    html = "user.html"
-    user = Profile.objects.get(id=id)
-    # ^ Broken here
-    posts = Post.objects.filter(author=user).order_by('-date')
-    comments = Comment.objects.filter(author=user).order_by('-date')
-    communities = Community.objects.filter(author=user).order_by('-date')
-    return render(request, html, {'user': user, 'posts': posts})
+# def UserView(request, id):
+#     html = "user.html"
+#     user = Profile.objects.get(id=id)
+#     # ^ Broken here
+#     posts = Post.objects.filter(author=user).order_by('-date')
+#     comments = Comment.objects.filter(author=user).order_by('-date')
+#     communities = Community.objects.filter(author=user).order_by('-date')
+#     return render(request, html, {'user': user, 'posts': posts})
 
 def edit(request, id):
     if not request.user.is_staff or request.user.author == Post.post_creator:
@@ -41,8 +42,7 @@ def edit(request, id):
     form = EditCommentForm(initial=model_to_dict(post))
     return render(request, "generic_form.html", {'form': form})
 
-def home_view(request):
-    ...
+
 # By Dunya-trying create an add_post with @ user ability
 # Dunya - structure somewhat taken from twitterclone(Not sure about lines 84 and 85)
 def addpost_view(request):
@@ -101,31 +101,29 @@ def addcommunity_view(request):
         form = AddCommunityForm()
     return render(request, "community.html", {"form": form})
 
-def profilepage_view(request):
-    ...
+# def profilepage_view(request):
+#     ...
 
 
 # Comment upvote/downvote
-def upvote_view(request, post_id, ):
+def upvote_view(request, post_id):
     post = Post.objects.get(id=post_id)
     post.credit += 1
-    post.post_creator.credit += 1
+    # post.post_creator.credit += 1
     post.save()
 
-    profile = Profile.objects.get(id=post_id)
-    profile.credit -= 1
-    profile.save()
-    
-
-    
+    # profile = Profile.objects.get(id=post_id)
+    # profile.credit -= 1
+    # profile.save()
+     
     return HttpResponseRedirect('/')
 
 
 def downvote_view(request, post_id):
     post = Post.objects.get(id=post_id)
-    profile = Profile.objects.get(id=post_id)
-    profile.credit += 1
-    profile.save()
+    # profile = Profile.objects.get(id=post_id)
+    # profile.credit += 1
+    # profile.save()
 
     post.credit -= 1
     post.save()

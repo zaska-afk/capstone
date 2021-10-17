@@ -110,11 +110,18 @@
           {% endcomment %}
           <li><a href="/addpost/">ADD POST</a></li>
           <li><a href="/addcommunity/">ADD COMMUNITY</a></li>
+          {%if request.user.is_authenticated %}
           <li>
             <a href="/profile/{{request.user.id}}"
               ><p>{{request.user.username}}</p></a
             >
           </li>
+          {% else %}
+          <li>
+            <a href="/signup/"><p>SIGNUP</p></a>
+          </li>
+          {% endif %}
+
           <li><a href="/login/">LOGIN</a></li>
           <li><a href="/logout/">LOGOUT</a></li>
         </ul>

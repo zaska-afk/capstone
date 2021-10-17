@@ -1,5 +1,4 @@
-<h1>{{user.display_name}}'s Profile</h1>
-
+{% extends "navbar.html" %} {% block content %}
 <a href="/addpost/">Add Post</a>
 <a href="/addcommunity/">Add Community</a>
 <a href="/login/">Login</a>
@@ -7,7 +6,8 @@
 <a href="/profile/{{user.id}}">Your Profile</a>
 <a href="/">Home</a>
 <br />
-
+<br />
+<h1>{{user.display_name}}'s Profile</h1>
 <p>Bio: {{user.bio}}</p>
 <p>Displayname: {{user.display_name}}</p>
 
@@ -15,3 +15,4 @@
 <p>Credits: {{user.credit}}</p>
 
 <a href="/editprofile/{{user.id}}/">Edit Profile</a>
+{% endblock %}

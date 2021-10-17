@@ -33,7 +33,7 @@ urlpatterns = [
     path("addpost/", addpost_view, name="addpost"),
     path('upvote/<int:post_id>/', views.upvote_view , name="like"),
     path('downvote/<int:post_id>/', views.downvote_view, name="dislike"),
-    path('user/<int:id>/', views.UserView, name='user'),
+    # path('user/<int:id>/', views.UserView, name='user'),
     path( '',views.handler404 ),
     path( '',views.handler500 ),
     path('editprofile/<int:user_id>/', edit_profile_view),
