@@ -33,7 +33,7 @@ urlpatterns = [
     path("addpost/", addpost_view, name="addpost"),
     path('upvote/<int:post_id>/', views.upvote_view , name="like"),
     path('downvote/<int:post_id>/', views.downvote_view, name="dislike"),
-    path('user/<int:id>/', views.UserView, name='user'),
+    # path('user/<int:id>/', views.UserView, name='user'),
     path( '',views.handler404 ),
     path( '',views.handler500 ),
     path('editprofile/<int:user_id>/', edit_profile_view),
@@ -41,7 +41,7 @@ urlpatterns = [
     path("community_id/<int:id>/", views.community_view, name="community_id"),
     path("editCommunity/<int:id>/", views.editCommunity, name='editcommunity'),
     path('', navbar_view),
-    
+    path("comment_list/<int:id>/", views.commentlist_view, name="comment_list"),
     # path("posts/<int:id>/", views.post_detail, name="post"),
     # path("community/<int:id>/", views.community_detail, name="community"),
 ]
