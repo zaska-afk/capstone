@@ -139,16 +139,16 @@ def downvote_view(request, post_id):
     return HttpResponseRedirect('/')
 
 
-def community_view(request, id: str):
-    com = Community.objects.get(id=id)
-    return render(request, "community_id.html", {"com": com})
+# def community_view(request, id: str):
+#     com = Community.objects.get(id=id)
+#     return render(request, "community_id.html", {"com": com})
 
 
 # class based view 3
-# class CommunityView(View):
-#     def community_view(self,request, id: str):
-#         com = Community.objects.get(id=id)
-#         return render(request, "community_id.html", {"com": com})
+class CommunityView(View):
+    def community_view(self,request, id: str):
+        com = Community.objects.get(id=id)
+        return render(request, "community_id.html", {"com": com})
 
 
 def editCommunity(request, id):
