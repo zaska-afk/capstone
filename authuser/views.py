@@ -1,9 +1,16 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, reverse
 from django.contrib.auth import authenticate, login, logout
+# from authuser import serializers
+# from rest_framework import status
+# from rest_framework.response import Response
+# from rest_framework.generics import GenericAPIView
+# from .serializers import GoogleSocialAuthSerializer
 
 from authuser.forms import LoginForm, SignUpForm, EditProfileForm
 from authuser.models import Profile
 from django.contrib.auth.models import User
+
+# from authuser.serializers import GoogleSocialAuthSerializer
 
 
 def signup_view(request):
@@ -79,3 +86,16 @@ def edit_profile_view(request, user_id):
     })
 
     return render(request, 'generic_form.html', {"form": form})
+
+
+# class GoogleSocialAuthView(GenericAPIView):
+#     serializer_class = GoogleSocialAuthSerializer
+
+#     def post(self, request):
+#         '''POST with "auth_token"
+#         send an idtoken as from google to get user information'''
+
+#         serializer = self.serializer_class(data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         data = ((serializer.validated_data)['auth_token'])
+#         return Response(data, status=status.HTTP_200_ok)
