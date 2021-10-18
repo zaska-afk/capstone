@@ -1,0 +1,124 @@
+{% extends "navbar.html" %} {% block content %}
+<style>
+  body {
+    font: 400 15px/1.8 Lato, sans-serif;
+    color: #777;
+  }
+  h3,
+  h4 {
+    margin: 10px 0 30px 0;
+    letter-spacing: 10px;
+    font-size: 20px;
+    color: #111;
+  }
+  .container {
+    padding: 80px 120px;
+  }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+  }
+  .person:hover {
+    border-color: #f1f1f1;
+  }
+  .bg-1 {
+    background: #2d2d30;
+    color: #bdbdbd;
+    padding: 10px;
+  }
+  .bg-1 h3 {
+    color: #fff;
+  }
+  .bg-1 p {
+    font-style: italic;
+  }
+  .btn {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #f1f1f1;
+    border-radius: 0;
+    transition: 0.2s;
+  }
+  .btn:hover,
+  .btn:focus {
+    border: 1px solid #333;
+    background-color: #fff;
+    color: #000;
+  }
+  .modal-content {
+    margin-top: 100px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 100px;
+    background-color: #777;
+    border: 5px solid #f1f1f1;
+  }
+  .modal-header,
+  h4,
+  .close {
+    background-color: #333;
+    color: #fff !important;
+    text-align: center;
+    font-size: 30px;
+  }
+  .modal-header {
+    margin-top: 50px;
+    padding: 40px 50px;
+  }
+  .modal-body {
+    padding: 40px 50px;
+  }
+  .form-control {
+    border-radius: 0;
+  }
+</style>
+<body id="myPage" data-spy="scroll" data-target=".navbar" class="text-center">
+  <div id="tour" class="bg-1">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h4><span class="glyphicon glyphicon-lock"></span>ADD POST</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" action="" method="post">
+          <div class="form-group">
+            <label for="usrname"> {% csrf_token %} {{ form.as_p }}</label>
+            <button type="submit" class="btn btn-block">
+              Submit
+              <span class="glyphicon glyphicon-ok"></span>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="submit"
+          class="btn btn-danger btn-default pull-left"
+          data-dismiss="modal"
+        >
+          <span class="glyphicon glyphicon-remove"></span> Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}
+
+<!-- {% comment %}
+<form action="" method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <input type="submit" value="Submit" />
+</form>
+
+{% for i in addpost%}
+<p>{{post_content}}</p>
+<p>{{post_creator}}</p>
+{% endfor%}
+<br />
+{% for i in post%}
+<p>{{comment|urlize}}</p>
+{% endfor%} {% endcomment %} -->

@@ -1,0 +1,15 @@
+{% comment %} <form action="" method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <input type="submit" value="Submit" />
+</form> {% endcomment %}
+
+{% extends "navbar.html" %}
+
+{% block content %}
+  <body>
+    <form action="" method="post">
+      {% csrf_token %} {{ form.as_p }}
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>{% endblock %}
