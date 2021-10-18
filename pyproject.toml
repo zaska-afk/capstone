@@ -8,6 +8,8 @@ authors = ["zaska-afk <zacharybalaska@gmail.com>"]
 python = "^3.9"
 Django = "^3.2.7"
 django-external-urls = "^0.3"
+django-environ = "^0.8.0"
+decouple = "^0.0.7"
 
 [tool.poetry.dev-dependencies]
 
