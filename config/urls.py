@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.urls import path
+from django.urls import path, include
 from project import views
 from project.views import index, addcomment_view, addcommunity_view, addpost_view, navbar_view
 from authuser.views import login_view, logout_view, signup_view, profile_view, edit_profile_view
+from django.views.generic import TemplateView
 # handler404 = 'project.views.handler404'
 # handler500 = 'project.views.handler500'
 
@@ -33,7 +34,6 @@ urlpatterns = [
     path("addpost/", addpost_view, name="addpost"),
     path('upvote/<int:post_id>/', views.upvote_view , name="like"),
     path('downvote/<int:post_id>/', views.downvote_view, name="dislike"),
-    # path('user/<int:id>/', views.UserView, name='user'),
     path( '',views.handler404 ),
     path( '',views.handler500 ),
     path('editprofile/<int:user_id>/', edit_profile_view),
@@ -42,8 +42,8 @@ urlpatterns = [
     path("editCommunity/<int:id>/", views.editCommunity, name='editcommunity'),
     path('', navbar_view),
     path("comment_list/<int:id>/", views.commentlist_view, name="comment_list"),
-    # path("posts/<int:id>/", views.post_detail, name="post"),
-    # path("community/<int:id>/", views.community_detail, name="community"),
+    path('accounts/', include('allauth.urls')),
+    path('google/', TemplateView.as_view(template_name='google.html')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
