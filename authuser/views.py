@@ -27,6 +27,7 @@ def signup_view(request):
                 display_name=data["display_name"],
                 user=user
                 )
+            user.backend = 'django.contrib.auth.backends.ModelBackend'
             login(request, user)
             return HttpResponseRedirect(reverse('homepage'))
     else:
@@ -42,6 +43,7 @@ def login_view(request):
             user = authenticate(
                 request, username=data["username"], password=data["password"]
             )
+            user.backend = 'django.contrib.auth.backends.ModelBackend'
             if user:
                 login(request, user)
                 return HttpResponseRedirect(
@@ -56,7 +58,7 @@ def logout_view(request):
     return HttpResponseRedirect(reverse("homepage"))
 
 def profile_view(request, user_id):
-    user = Profile.objects.get(id=user_id)
+    user = Profile.objects.get(id=user_id-1)
     return render(request, "profile.html", {"user": user})
 
 
