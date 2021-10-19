@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from authuser.forms import LoginForm, SignUpForm, EditProfileForm
 from authuser.models import Profile
 from django.contrib.auth.models import User
+from django.views.generic import TemplateView
 
 # from authuser.serializers import GoogleSocialAuthSerializer
 
