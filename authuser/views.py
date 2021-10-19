@@ -18,11 +18,6 @@ def signup_view(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            # user = Profile.objects.create_user(
-            #     username=data['username'],
-            #     password=data['password'],
-            #     display_name=data['display_name'],
-            # )
             user = User.objects.create_user(
                 username=data['username'],
                 password=data['password']

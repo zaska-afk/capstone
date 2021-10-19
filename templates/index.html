@@ -207,11 +207,13 @@
                     id="usrname"
                     placeholder="Enter comment"
                   />
-                </div>
-                <button type="submit" class="btn btn-block">
+                </div><form action="" method="post">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button type="submit" class="btn btn-block">
                   Submit
                   <span class="glyphicon glyphicon-ok"></span>
                 </button>
+              </form>
               </form>
             </div>
             <div class="modal-footer">
@@ -253,7 +255,7 @@
           </a>
           <div id="demo" class="collapse">
             <p>Loves Language Learning</p>
-            <p>CLassic Motorcycles</p>
+            <p>Classic Motorcycles</p>
             <p>Strength Training</p>
           </div>
         </div>
@@ -290,9 +292,9 @@
               />
           </a>
           <div id="demo3" class="collapse">
-            <p>Bass player</p>
-            <p>Loves math</p>
-            <p>Member since 2005</p>
+            <p>Loves Travel</p>
+            <p>Cave Exploration</p>
+            <p>Rollercoasters</p>
           </div>
         </div>
         <div class="col-sm-4">

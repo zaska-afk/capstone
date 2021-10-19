@@ -3,17 +3,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from authuser.models import Profile
 
-# first models 
-# class Profile(models.Model):
-#     display_name = models.CharField(max_length=50)
-#     site_user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     bio = models.CharField(max_length=200, blank=True)
-#     credit = models.IntegerField(default=0)
-#     created_on = models.DateField(auto_now_add=True)
-
-#     def __str__(self):
-#         return self.display_name
-#         # return str(self.display_name)
 
 class Community(models.Model):
     comm_name = models.CharField(max_length=60)
@@ -41,7 +30,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.post_name
-        # return str(self.post_name)
+        
     
 
 class Comment(models.Model):
@@ -52,12 +41,5 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment_text
-        # return str(self.post_name)
+        
 
-class Vote(models.Model):
-    vote_post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True)
-    vote_comment = models.ForeignKey(Comment, on_delete=models.CASCADE, blank=True, null=True)
-    vote_user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=False)
-
-    def __str__(self):
-        return self.vote_user

@@ -1,4 +1,5 @@
 {% extends "navbar.html" %} {% block content %}
+<title>Capstone</title>
 <style>
   body {
     font: 400 15px/1.8 Lato, sans-serif;
@@ -89,6 +90,10 @@
             <label for="usrname"> {% csrf_token %} {{ form.as_p }}</label>
             <button type="submit" class="btn btn-block">
               Submit
+              <span class="glyphicon glyphicon-ok"></span>
+            </button>
+            <button type="submit" class="btn btn-block">
+              <a href="/google/{{google}}">Login With Google</a>
               <span class="glyphicon glyphicon-ok"></span>
             </button>
           </div>
